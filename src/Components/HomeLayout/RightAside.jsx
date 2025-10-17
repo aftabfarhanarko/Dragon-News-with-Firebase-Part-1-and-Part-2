@@ -1,7 +1,10 @@
 import React from "react";
+import LoginsSecial from "../LoginsSecial";
 
 const RightAside = () => {
-  return <div>RightAside </div>;
+  return <div>
+    <LoginsSecial></LoginsSecial>
+  </div>;
 };
 
 export default RightAside;
