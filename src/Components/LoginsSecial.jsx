@@ -15,7 +15,7 @@ const LoginsSecial = () => {
         <h1 className="font-semibold">Login With</h1>
 
         <div className="mt-4 flex-col">
-          <button className="btn bg-white text-blue-500 border-[#2083ca]">
+          <button className="btn bg-white  text-blue-500 border-[#2083ca]">
             <svg
               aria-label="Google logo"
               width="16"
@@ -45,6 +45,8 @@ const LoginsSecial = () => {
             </svg>
             Login with Google
           </button>
+        
+
           <button className="btn mt-4  text-black border-gray-400">
             <FaGithub /> Login with GitHub
           </button>
