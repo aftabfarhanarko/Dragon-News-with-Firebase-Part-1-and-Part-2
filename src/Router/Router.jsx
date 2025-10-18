@@ -5,6 +5,8 @@ import CaterogyNews from "../Page/CaterogyNews";
 import Login from "../Page/Login";
 import Rigester from "../Page/Rigester";
 import AuthLayout from "../layout/AuthLayout";
+import NewsDetlise from "../Page/NewsDetlise";
+import PrivetRoute from "../provider/PrivetRoute";
 
 export const router = createBrowserRouter([
   {
@@ -18,23 +20,30 @@ export const router = createBrowserRouter([
       {
         path: "/caterogy/:id",
         element: <CaterogyNews></CaterogyNews>,
-        loader: () => fetch("/news.json")
+        loader: () => fetch("/news.json"),
       },
     ],
   },
   {
     path: "/auth",
-    element: <AuthLayout></AuthLayout> ,
-    children:[
+    element: <AuthLayout></AuthLayout>,
+    children: [
       {
-        path:"/auth/login",
-        element: <Login></Login>
+        path: "/auth/login",
+        element: <Login></Login>,
       },
       {
-        path:"/auth/rigster",
-        element: <Rigester></Rigester>
-      }
-    ]
+        path: "/auth/rigster",
+        element: <Rigester></Rigester>,
+      },
+    ],
+  },
+  {
+    path: "/news_detlis/:id",
+    loader: () => fetch("/news.json"),
+    element: <PrivetRoute>
+      <NewsDetlise></NewsDetlise>
+    </PrivetRoute>,
   },
   {
     path: "/*",
