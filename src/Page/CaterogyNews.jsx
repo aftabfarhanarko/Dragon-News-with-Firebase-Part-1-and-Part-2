@@ -23,7 +23,7 @@ const CaterogyNews = () => {
   }, [data, id]);
 
   return <div>
-    Total {storsNews.length} News Found
+  <h1 className="mb-9 font-semibold text-lg">  Total <span className="text-red-600">{storsNews.length}</span> News Found</h1>
     <div>
        {
         storsNews.map((card, index) => <NewesCard key={index} card={card}></NewesCard>)

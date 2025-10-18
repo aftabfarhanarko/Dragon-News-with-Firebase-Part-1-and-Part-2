@@ -9,7 +9,7 @@ import RightAside from "../Components/HomeLayout/RightAside";
 const Homelayout = () => {
   return (
     <div>
-      <header className="my-4">
+      <header className="my-4 ">
         <Header></Header>
         <section className="w-11/12 mx-auto ">
           <LetasNews></LetasNews>
@@ -19,13 +19,13 @@ const Homelayout = () => {
         </nav>
       </header>
       <main className="grid grid-cols-12 w-11/12 mx-auto my-4 gap-10">
-      <aside className="col-span-2 ">
+      <aside className="col-span-2 sticky top-0 h-fit">
         <LeftAside></LeftAside>
       </aside>
         <section className="col-span-8 ">
           <Outlet></Outlet>
         </section>
-       <aside className="col-span-2 ">
+       <aside className="col-span-2  sticky top-0 h-fit">
         <RightAside></RightAside>
        </aside>
       </main>
