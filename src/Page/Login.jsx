@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../provider/AuthContex";
 
 const Login = () => {
-        const [show , setShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const data = useContext(AuthContext);
+  console.log(data.name, data.email);
+  
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">

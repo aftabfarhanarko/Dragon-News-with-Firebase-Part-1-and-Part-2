@@ -1,6 +1,4 @@
-
 import { getAuth } from "firebase/auth";
-
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -9,14 +7,16 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCBQy2WGmkjypNDOlEhQhO6nEWTG9fcyO0",
-  authDomain: "dragon-news-62ca8.firebaseapp.com",
-  projectId: "dragon-news-62ca8",
-  storageBucket: "dragon-news-62ca8.firebasestorage.app",
-  messagingSenderId: "859448266909",
-  appId: "1:859448266909:web:8d03730291282e4414c474"
+  apiKey: "AIzaSyCnJy4S_YwbWuRcm-lqcOnfC3ZnokIMfp4",
+  authDomain: "my-dragon-project-761b6.firebaseapp.com",
+  projectId: "my-dragon-project-761b6",
+  storageBucket: "my-dragon-project-761b6.firebasestorage.app",
+  messagingSenderId: "232913184891",
+  appId: "1:232913184891:web:a042e21b331924c1dadade",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+
+// npm install -g firebase-tools
