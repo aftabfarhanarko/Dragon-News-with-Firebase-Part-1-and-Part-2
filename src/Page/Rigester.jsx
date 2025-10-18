@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthContex";
@@ -11,26 +11,51 @@ const MySwal = withReactContent(Swal);
 
 const Rigester = () => {
   const [show, setShow] = useState(false);
-
-  const { creatUser } = useContext(AuthContext);
+  const navegit = useNavigate();
+  const { creatUser,ubdeatUserProfile,setUser } = useContext(AuthContext);
+  const [erra , setErra] = useState("");
+  const [era , setEra] = useState("");
 
   const handelRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
+    if(name.length <6){
+      setErra("Name Should be 6 Charater")
+      return
+    }else{
+     setErra("")
+    }
     const photo = e.target.photo.value;
+    const profile = {
+          displayName:name,
+          photoURL:photo,
+        }
+        
     const email = e.target.email.value;
+
+     if(email.length <7){
+      setEra("Please Entet a Valid Email");
+      return;
+    }else{
+     setEra("")
+    }
     const password = e.target.password.value;
-    // console.log({name, photo, email, password});
     creatUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        const user = result.user;
         toast.success("Register Success");
+        ubdeatUserProfile(profile)
+        .then(() => {
+          setUser({...user, profile})
+          navegit("/");
+        }).catch(() => {
+          setUser(user)
+        })
       })
       .catch((err) => {
-        console.log(err.message);
         MySwal.fire({
           title: "Error!",
-          text:err.message,
+          text: err.message,
           icon: "error",
         });
       });
@@ -53,6 +78,7 @@ const Rigester = () => {
                 placeholder="enter your name"
                 required
               />
+              {erra && <p className="text-xs text-red-500">{erra}</p>}
 
               {/* Photo Url */}
               <label className="label font-semibold">Photo URL</label>
@@ -73,6 +99,7 @@ const Rigester = () => {
                 placeholder="email"
                 required
               />
+                  {era && <p className="text-xs text-red-500">{era}</p>}
 
               <div className="relative ">
                 <label className="label font-semibold">Password</label>
@@ -90,9 +117,7 @@ const Rigester = () => {
                   {show ? <FaEye /> : <FaEyeSlash />}
                 </div>
               </div>
-              <div>
-                <a className="link link-hover">Forgot password?</a>
-              </div>
+
               <button type="submit" className="btn btn-neutral mt-4">
                 Register
               </button>

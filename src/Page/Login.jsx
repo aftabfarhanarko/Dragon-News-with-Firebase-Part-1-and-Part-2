@@ -1,36 +1,42 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthContex";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { Navigate } from "react-router";
 const MySwal = withReactContent(Swal);
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  const {loginUser} = useContext(AuthContext);
+  const [error , setError] = useState("");
+  const { loginUser } = useContext(AuthContext);
+
+  const locations = useLocation();
+  const navegit = useNavigate();
 
   const handelLogin = (e) => {
-     e.preventDefault();
+    e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    
+
     loginUser(email, password)
-    .then(result => {
-        console.log(result.user);
-         toast.success("Login Success");
-    }).catch(err => {
-        console.log(err.message);
-        MySwal.fire({
-          title: "Error!",
-          text:err.message,
-          icon: "error",
-        });
-    })
-  } 
-  
+      .then((result) => {
+        toast.success("Login Success");
+        navegit(`${locations.state ? locations.state : "/"}`);
+      })
+      .catch((err) => {
+        setError(err.code);
+        // MySwal.fire({
+        //   title: "Error!",
+        //   text: err.message,
+        //   icon: "error",
+        // });
+      });
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -41,7 +47,13 @@ const Login = () => {
           <form onSubmit={handelLogin}>
             <fieldset className="fieldset">
               <label className="label font-semibold">Email address</label>
-              <input name="email" type="email" className="input" placeholder="Email" />
+              <input
+                name="email"
+                type="email"
+                className="input"
+                placeholder="Email"
+                required
+              />
               <div className="relative ">
                 <label className="label font-semibold">Password</label>
                 <input
@@ -49,6 +61,7 @@ const Login = () => {
                   className="input focus:outline-none"
                   placeholder="password"
                   name="password"
+                  required
                 />
                 <div
                   className="absolute right-7 top-8 z-10  cursor-pointer text-md"
@@ -60,7 +73,10 @@ const Login = () => {
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
-              <button type="submite" className="btn btn-neutral mt-4">Login</button>
+               <p className="text-red-600">{error && error}</p>
+              <button type="submite" className="btn btn-neutral mt-4">
+                Login
+              </button>
               <p className="font-semibold text-center mt-2">
                 Dont’t Have An Account ?{" "}
                 <Link
@@ -70,6 +86,7 @@ const Login = () => {
                   Register
                 </Link>
               </p>
+             
             </fieldset>
           </form>
         </div>

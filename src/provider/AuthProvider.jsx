@@ -5,13 +5,13 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/fierbase";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loding, setLoding] = useState(true);
-  //   console.log(user);
 
   const creatUser = (email, password) => {
     setLoding(true);
@@ -37,6 +37,11 @@ const AuthProvider = ({ children }) => {
   const usersignOuts = () => {
     return signOut(auth);
   };
+  const ubdeatUserProfile = (profile) => {
+    
+     
+    return updateProfile(auth.currentUser,profile)
+  }
 
   const authData = {
     user,
@@ -45,6 +50,8 @@ const AuthProvider = ({ children }) => {
     usersignOuts,
     loding,
     setLoding,
+    ubdeatUserProfile,
+    setUser
   };
   return (
     <div>

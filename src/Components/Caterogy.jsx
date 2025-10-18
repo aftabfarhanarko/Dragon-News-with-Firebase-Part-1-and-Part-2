@@ -4,7 +4,6 @@ const caterogyPromise = fetch("/categories.json").then((res) => res.json());
 
 const Caterogy = () => {
   const cateroise = use(caterogyPromise);
-  console.log(cateroise);
 
   return (
     <div >

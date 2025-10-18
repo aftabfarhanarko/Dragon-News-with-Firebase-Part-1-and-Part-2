@@ -20,7 +20,6 @@ const NewsDetlise = () => {
       myfont();
     };
   }, [data, id]);
-  console.log(finddata);
 
   return (
     <div>

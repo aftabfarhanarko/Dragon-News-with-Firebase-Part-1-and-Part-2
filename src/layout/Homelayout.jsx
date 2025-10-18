@@ -1,12 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigation } from "react-router";
 import Header from "../Components/Header";
 import LetasNews from "../Components/LetasNews";
 import Navbar from "../Components/Navbar";
 import LeftAside from "../Components/HomeLayout/LeftAside";
 import RightAside from "../Components/HomeLayout/RightAside";
+import Loding from "../Components/Loding";
 
 const Homelayout = () => {
+  const {state} = useNavigation();
   return (
     <div>
       <header className="my-4 ">
@@ -23,7 +25,8 @@ const Homelayout = () => {
         <LeftAside></LeftAside>
       </aside>
         <section className="col-span-8 ">
-          <Outlet></Outlet>
+          {state == "loading" ? <Loding></Loding> :   <Outlet></Outlet> }
+        
         </section>
        <aside className="col-span-2  sticky top-0 h-fit">
         <RightAside></RightAside>
