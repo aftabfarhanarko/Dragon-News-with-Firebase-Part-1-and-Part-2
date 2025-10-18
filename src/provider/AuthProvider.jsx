@@ -10,19 +10,23 @@ import { auth } from "../firebase/fierbase";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-//   console.log(user);
+  const [loding, setLoding] = useState(true);
+  //   console.log(user);
 
   const creatUser = (email, password) => {
+    setLoding(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const loginUser = (email, password) => {
+    setLoding(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   useEffect(() => {
     const unsubcrip = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoding(false);
     });
 
     return () => {
@@ -32,13 +36,15 @@ const AuthProvider = ({ children }) => {
 
   const usersignOuts = () => {
     return signOut(auth);
-  }
+  };
 
   const authData = {
     user,
     creatUser,
     loginUser,
-    usersignOuts
+    usersignOuts,
+    loding,
+    setLoding,
   };
   return (
     <div>
