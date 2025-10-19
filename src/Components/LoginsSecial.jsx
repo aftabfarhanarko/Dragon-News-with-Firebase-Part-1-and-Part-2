@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaGithub } from "react-icons/fa";
 import facbok from "../assets/fb.png";
 import insta from "../assets/instagram.png";
@@ -7,15 +7,29 @@ import swming from "../assets/swimming.png";
 import clas from "../assets/class.png";
 import play from "../assets/playground.png";
 import bg from "../assets/bg.png";
+import { AuthContext } from "../provider/AuthContex";
 
 const LoginsSecial = () => {
+  const { user, googleLoging,githubLoging } = useContext(AuthContext);
+  const haldelLogingGoogle = () =>{
+    googleLoging();
+  }
+  const haldelLogingithub = () =>{
+    githubLoging()
+    .then(result => {
+    }).catch(err => {
+    })
+  }
   return (
     <div>
-      <div>
+     
+     {
+      user ? "" 
+      : <div>
         <h1 className="font-semibold">Login With</h1>
 
         <div className="mt-4 flex-col">
-          <button className="btn bg-white  text-blue-500 border-[#2083ca]">
+          <button onClick={haldelLogingGoogle} className="btn bg-white  text-blue-500 border-[#2083ca]">
             <svg
               aria-label="Google logo"
               width="16"
@@ -45,13 +59,13 @@ const LoginsSecial = () => {
             </svg>
             Login with Google
           </button>
-        
 
-          <button className="btn mt-4  text-black border-gray-400">
+          <button onClick={haldelLogingithub} className="btn mt-4  text-black border-gray-400">
             <FaGithub /> Login with GitHub
           </button>
         </div>
-      </div>
+      </div> 
+     }
       <div className="mt-5">
         <h1 className="font-semibold"> Find Us On</h1>
         <div className=" mt-3 border rounded-md border-base-300">
@@ -77,7 +91,6 @@ const LoginsSecial = () => {
       </div>
 
       <div className="bg-base-300 p-3 py-5 mt-6 rounded-lg">
-        
         <img src={swming}></img>
         <img src={clas}></img>
         <img src={play}></img>

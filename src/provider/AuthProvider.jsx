@@ -4,11 +4,17 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
+  GoogleAuthProvider,
+  GithubAuthProvider 
 } from "firebase/auth";
 import { auth } from "../firebase/fierbase";
 
+
+const googleprovider = new GoogleAuthProvider();
+const gitHubprovider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loding, setLoding] = useState(true);
@@ -22,6 +28,13 @@ const AuthProvider = ({ children }) => {
     setLoding(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+
+  const googleLoging = () => {
+    return signInWithPopup(auth, googleprovider);
+  }
+  const githubLoging = () => {
+    return signInWithPopup(auth,  gitHubprovider);
+  }
 
   useEffect(() => {
     const unsubcrip = onAuthStateChanged(auth, (currentUser) => {
@@ -51,7 +64,9 @@ const AuthProvider = ({ children }) => {
     loding,
     setLoding,
     ubdeatUserProfile,
-    setUser
+    setUser,
+    googleLoging,
+    githubLoging
   };
   return (
     <div>
