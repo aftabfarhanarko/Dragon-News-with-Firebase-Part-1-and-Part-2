@@ -22,14 +22,20 @@ const CaterogyNews = () => {
     }
   }, [data, id]);
 
-  return <div>
-  <h1 className="mb-9 font-semibold text-lg">  Total <span className="text-red-600">{storsNews.length}</span> News Found</h1>
+  return (
     <div>
-       {
-        storsNews.map((card, index) => <NewesCard key={index} card={card}></NewesCard>)
-       }
+      <h1 className="mb-9 font-semibold text-lg">
+        {" "}
+        Total <span className="text-red-600">{storsNews.length}</span> News
+        Found
+      </h1>
+      <div>
+        {storsNews.map((card, index) => (
+          <NewesCard key={index} card={card}></NewesCard>
+        ))}
+      </div>
     </div>
-    </div>;
+  );
 };
 
 export default CaterogyNews;

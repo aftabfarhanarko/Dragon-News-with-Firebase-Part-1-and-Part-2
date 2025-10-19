@@ -8,6 +8,7 @@ import AuthLayout from "../layout/AuthLayout";
 import NewsDetlise from "../Page/NewsDetlise";
 import PrivetRoute from "../provider/PrivetRoute";
 import Loding from "../Components/Loding";
+import PasswordReset from "../Components/PasswordReset";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       <NewsDetlise></NewsDetlise>
     </PrivetRoute>,
     hydrateFallbackElement:<Loding></Loding>
+  },
+  {
+    path:"/reset",
+    element: <PasswordReset></PasswordReset>
   },
   {
     path: "/*",

@@ -39,9 +39,17 @@ const Navbar = () => {
         )}
 
         {user ? (
-          <button onClick={signOutUser} className="btn btn-primary px-10 ">
-            LogOut
-          </button>
+          <div className="flex flex-col">
+            <button onClick={signOutUser} className="btn btn-primary px-10 ">
+              LogOut
+            </button>
+            <Link
+              to="reset"
+              className="text-xs mt-2 underline cursor-pointer hover:text-red-600 font-semibold "
+            >
+              Reset Password
+            </Link>
+          </div>
         ) : (
           <Link to="/auth/login" className="btn btn-primary px-10 ">
             {" "}

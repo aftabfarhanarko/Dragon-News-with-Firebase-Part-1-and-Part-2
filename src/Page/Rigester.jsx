@@ -12,32 +12,32 @@ const MySwal = withReactContent(Swal);
 const Rigester = () => {
   const [show, setShow] = useState(false);
   const navegit = useNavigate();
-  const { creatUser,ubdeatUserProfile,setUser } = useContext(AuthContext);
-  const [erra , setErra] = useState("");
-  const [era , setEra] = useState("");
+  const { creatUser, ubdeatUserProfile, setUser } = useContext(AuthContext);
+  const [erra, setErra] = useState("");
+  const [era, setEra] = useState("");
 
   const handelRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
-    if(name.length <6){
-      setErra("Name Should be 6 Charater")
-      return
-    }else{
-     setErra("")
+    if (name.length < 6) {
+      setErra("Name Should be 6 Charater");
+      return;
+    } else {
+      setErra("");
     }
     const photo = e.target.photo.value;
     const profile = {
-          displayName:name,
-          photoURL:photo,
-        }
-        
+      displayName: name,
+      photoURL: photo,
+    };
+
     const email = e.target.email.value;
 
-     if(email.length <7){
+    if (email.length < 7) {
       setEra("Please Entet a Valid Email");
       return;
-    }else{
-     setEra("")
+    } else {
+      setEra("");
     }
     const password = e.target.password.value;
     creatUser(email, password)
@@ -45,12 +45,13 @@ const Rigester = () => {
         const user = result.user;
         toast.success("Register Success");
         ubdeatUserProfile(profile)
-        .then(() => {
-          setUser({...user, profile})
-          navegit("/");
-        }).catch(() => {
-          setUser(user)
-        })
+          .then(() => {
+            setUser({ ...user, profile });
+            navegit("/");
+          })
+          .catch(() => {
+            setUser(user);
+          });
       })
       .catch((err) => {
         MySwal.fire({
@@ -99,7 +100,7 @@ const Rigester = () => {
                 placeholder="email"
                 required
               />
-                  {era && <p className="text-xs text-red-500">{era}</p>}
+              {era && <p className="text-xs text-red-500">{era}</p>}
 
               <div className="relative ">
                 <label className="label font-semibold">Password</label>
@@ -117,6 +118,11 @@ const Rigester = () => {
                   {show ? <FaEye /> : <FaEyeSlash />}
                 </div>
               </div>
+              {/* Remember me */}
+              <label className="label cursor-pointer mt-2">
+                <input type="checkbox" name="rememberMe" className="checkbox" />
+                <span className="label-text">Remember me</span>
+              </label>
 
               <button type="submit" className="btn btn-neutral mt-4">
                 Register
