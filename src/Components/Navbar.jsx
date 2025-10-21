@@ -5,7 +5,7 @@ import { AuthContext } from "../provider/AuthContex";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const { user, usersignOuts } = useContext(AuthContext);
+  const { user, usersignOuts,loding } = useContext(AuthContext);
 
   const signOutUser = () => {
     usersignOuts();
@@ -38,17 +38,12 @@ const Navbar = () => {
           <img src={usert}></img>
         )}
 
-        {user ? (
+        { user ? (
           <div className="flex flex-col">
             <button onClick={signOutUser} className="btn btn-primary px-10 ">
               LogOut
             </button>
-            <Link
-              to="reset"
-              className="text-xs mt-2 underline cursor-pointer hover:text-red-600 font-semibold "
-            >
-              Reset Password
-            </Link>
+           
           </div>
         ) : (
           <Link to="/auth/login" className="btn btn-primary px-10 ">

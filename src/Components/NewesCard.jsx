@@ -3,6 +3,7 @@ import { CiBookmark } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { Link } from "react-router";
+import LetasNews from "./LetasNews";
 
 const NewesCard = ({ card }) => {
   const formentDate = new Date(card.author.published_date).toLocaleDateString();
