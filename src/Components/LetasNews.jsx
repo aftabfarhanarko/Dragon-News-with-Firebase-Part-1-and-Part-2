@@ -1,7 +1,6 @@
 import {  useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { useLoaderData, useParams, useSearchParams } from "react-router";
-import Marquey from "./Marquey";
 
 const LetasNews = () => {
    const myfetchData = useLoaderData();
@@ -34,7 +33,7 @@ const LetasNews = () => {
   const filters =data.map(element => element.title);
 
   const allTitlesString = filters.join(", "); 
-console.log(allTitlesString);
+
 
 
   return (
